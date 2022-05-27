@@ -1,0 +1,33 @@
+
+<? include_once("views/common/header.html"); ?>
+
+    <? if ($this->isAuthorized): ?>
+    <a type="button" class="btn btn-primary" href="<?= FULL_SITE_ROOT . 'genre/add' ?>">Добавить</a>
+    <? endif; ?>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Жанр</th>
+            <? if ($this->isAuthorized): ?>
+            <th>Действия</th>
+            <? endif; ?>
+        </tr>
+        </thead>
+        <tbody>
+        <? foreach ($genres as $genre): ?>
+        <tr>
+            <td> <?= $genre['genre_id'] ?> </td>
+            <td> <?= $genre['genre_name'] ?> </td>
+            <? if ($this->isAuthorized): ?>
+            <td>
+                <a type="button" class="btn btn-success" href="<?= FULL_SITE_ROOT . 'genre/edit/' . $genre['genre_id'] ?>">Изменить</a>
+                <button type="button" class="btn btn-danger" onclick="remove('genre', <?= $genre['genre_id']; ?>)">Удалить</button>
+            </td>
+            <? endif; ?>
+        </tr>
+        <? endforeach; ?>
+        </tbody>
+    </table>
+
+<? include_once("views/common/footer.html"); ?>

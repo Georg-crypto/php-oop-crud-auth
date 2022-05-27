@@ -1,0 +1,52 @@
+
+
+<? include_once("views/common/header.html"); ?>
+
+    <div class="container">
+        <form method="post">
+            <div class="mb-3">
+                <label class="form-label">Название книги</label>
+                <input type="text" class="form-control" name="name" value="<?= isset($book) ? $book['book_name'] : ''; ?>">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Цена</label>
+                <input type="text" class="form-control" name="price" value="<?= isset($book) ? $book['book_price'] : ''; ?>">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Год издания</label>
+                <input type="text" class="form-control" name="year" value="<?= isset($book) ? $book['book_year'] : ''; ?>">
+            </div>
+<!--            <div class="mb-3">-->
+<!--                <label class="form-label">Жанр</label>-->
+<!--                <select class="form-select">-->
+<!--                    <option selected>Open this select menu</option>-->
+<!--                    <option value="1">One</option>-->
+<!--                    <option value="2">Two</option>-->
+<!--                    <option value="3">Three</option>-->
+<!--                </select>-->
+<!--            </div>-->
+            <div class="mb-3">
+                <label class="form-label">Жанр</label>
+                <select class="form-select" name="genre">
+                    <? foreach ($genres as $genre): ?>
+                    <option <?= (isset($book) && ($genre['genre_id'] === $book['book_genre_id'])) ? 'selected' : ''; ?>
+                    value="<?= $genre['genre_id']; ?>"><?= $genre['genre_name']; ?></option>
+                    <? endforeach; ?>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Авторы</label>
+                <select class="form-select" multiple name="authors[]">
+                    <? foreach ($authors as $author): ?>
+                        <option <?= (isset($book) &&  in_array($author['author_id'], $book['authors'])) ? 'selected' : ''; ?>
+                                value="<?= $author['author_id']; ?>"><?= $author['author_fio']; ?></option>
+                    <? endforeach; ?>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <?= isset($book) ? 'Изменить' : 'Добавить'; ?>
+            </button>
+        </form>
+    </div>
+
+<? include_once("views/common/footer.html"); ?>

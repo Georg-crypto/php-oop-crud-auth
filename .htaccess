@@ -1,0 +1,6 @@
+RewriteEngine On
+#если такой файл физически существует, то не будет перенаправления на index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+#если такая директория физически существует, то не будет перенаправления на index.php
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule (.*) index.php

@@ -1,0 +1,32 @@
+
+<? include_once("views/common/header.html"); ?>
+    <? if ($this->isAuthorized): ?>
+    <a type="button" class="btn btn-primary" href="<?= FULL_SITE_ROOT . 'author/add' ?>">Добавить</a>
+    <? endif; ?>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>ФИО</th>
+                <? if ($this->isAuthorized): ?>
+                    <th>Действия</th>
+                <? endif; ?>
+            </tr>
+        </thead>
+        <tbody>
+        <? foreach ($authors as $author): ?>
+            <tr>
+                <td> <?= $author['author_id'] ?> </td>
+                <td> <?= $author['author_fio'] ?> </td>
+                <? if ($this->isAuthorized): ?>
+                    <td>
+                        <a type="button" class="btn btn-success" href="<?= FULL_SITE_ROOT . 'author/edit/' . $author['author_id'] ?>">Изменить</a>
+                        <button type="button" class="btn btn-danger" onclick="remove('author', <?= $author['author_id']; ?>)">Удалить</button>
+                    </td>
+                <? endif; ?>
+            </tr>
+        <? endforeach; ?>
+        </tbody>
+    </table>
+    <?= $pagination->get(); ?>
+<? include_once("views/common/footer.html"); ?>

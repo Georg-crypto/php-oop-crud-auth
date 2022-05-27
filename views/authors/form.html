@@ -1,0 +1,17 @@
+
+
+<? include_once("views/common/header.html"); ?>
+
+    <div class="container">
+        <form method="post">
+            <div class="mb-3">
+                <label class="form-label">ФИО</label>
+                <input type="text" class="form-control" name="fio" value="<?= isset($author) ? $author['author_fio'] : ''; ?>">
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <?= isset($author) ? 'Изменить' : 'Добавить'; ?>
+            </button>
+        </form>
+    </div>
+
+<? include_once("views/common/footer.html"); ?>
